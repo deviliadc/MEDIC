@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); // Memulai sesi
 
 if (isset($_GET['confirm']) && $_GET['confirm'] === 'yes') {
     $_SESSION['admin'] = ""; 

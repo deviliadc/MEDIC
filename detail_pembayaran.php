@@ -1,7 +1,6 @@
 <?php
 session_start();
 include 'connect.php';
-include 'header.php';
 
 // Ambil ID pembelian dari query parameter
 $id_pembelian = isset($_GET['id_pembelian']) ? $_GET['id_pembelian'] : null;
@@ -91,6 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Hanya file gambar yang diperbolehkan untuk diunggah.";
     }
 }
+
+include 'header.php'; // Menyertakan header halaman
 ?>
 
 <!DOCTYPE html>
@@ -99,7 +100,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Pembayaran</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS dari CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
 

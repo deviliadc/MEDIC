@@ -6,7 +6,8 @@ include 'header.php'; // Menyertakan header
 $id_pembelian = isset($_GET['id_pembelian']) ? $_GET['id_pembelian'] : null;
 
 // Mengambil data pembayaran dan pembelian berdasarkan ID pembelian
-$sql = "SELECT pb.id_pembelian, pb.id_customer, pb.tanggal_pembelian, pb.nama_penerima, pb.alamat_penerima, pb.telp_penerima, pb.total_pembelian, pb.id_metode, pb.id_status,
+$sql = "SELECT pb.id_pembelian, pb.id_customer, pb.tanggal_pembelian, pb.nama_penerima, pb.alamat_penerima, 
+            pb.telp_penerima, pb.total_pembelian, pb.id_metode, pb.id_status,
             s.status, p.jumlah, p.bukti, p.tanggal_pembayaran, b.nama_bank, b.rekening, pb.resi
         FROM pembelian pb
         JOIN pembayaran p ON pb.id_pembelian = p.id_pembelian

@@ -1,15 +1,14 @@
 <?php 
 session_start();
 include 'connect.php'; 
-include 'header.php'; 
 
 // Ambil id_produk dari URL
 $id_produk = isset($_GET['id_produk']) ? (int)$_GET['id_produk'] : 0;
 
 // Ambil data produk dari database
-$sql = "SELECT id_produk, nama_produk, harga_produk, berat_produk, foto_produk, deskripsi_produk, nama_kategori 
-        FROM produk 
-        JOIN kategori ON produk.id_kategori = kategori.id_kategori 
+$sql = "SELECT p.id_produk, p.nama_produk, p.harga_produk, p.berat_produk, p.foto_produk, p.deskripsi_produk, k.nama_kategori 
+        FROM produk p
+        JOIN kategori k ON p.id_kategori = p.id_kategori 
         WHERE id_produk = $id_produk";
 
 $result = $conn->query($sql);
@@ -27,6 +26,8 @@ if ($result->num_rows === 0) {
 }
 
 $product = $result->fetch_assoc();
+
+include 'header.php'; // Menyertakan header halaman
 ?>
 
 <!DOCTYPE html>
@@ -34,8 +35,9 @@ $product = $result->fetch_assoc();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produk Kami</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Produk</title>
+    <!-- Bootstrap CSS dari CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         .img-fluid {
             width: 450px;
@@ -67,7 +69,8 @@ $product = $result->fetch_assoc();
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- JavaScript Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-QiT7gnpGVJO7zlZmThBXzBAsJtnszQfjEl4G6UrfMvhSz4rA/S98IbxJgtHlntq+" crossorigin="anonymous"></script>
 </body>
 </html>
 

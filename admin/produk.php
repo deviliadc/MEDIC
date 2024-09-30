@@ -69,7 +69,7 @@ include 'header.php';
                                     <td><?php echo $row['berat_produk']; ?></td>
                                     <td><?php echo $row['nama_kategori']; ?></td>
                                     <td><img src="../assets/foto_produk/<?php echo $row['foto_produk']; ?>" alt="<?php echo $row['nama_produk']; ?>" style="max-width: 100px;"></td>
-                                    <td><?php echo $row['deskripsi_produk']; ?></td>
+                                    <td><?php echo substr($row['deskripsi_produk'], 0, 100) . (strlen($row['deskripsi_produk']) > 100 ? '...' : ''); ?></td>
                                     <td>
                                         <!-- Tombol untuk edit dan hapus produk -->
                                         <a href="edit_produk.php?id_produk=<?php echo $row['id_produk']; ?>" class="btn btn-warning">Edit</a>

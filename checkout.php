@@ -1,7 +1,6 @@
 <?php
 session_start(); // Memulai sesi untuk mengakses variabel sesi
 include 'connect.php'; // Menyertakan file koneksi database
-include 'header.php'; // Menyertakan file header untuk layout halaman
 
 // Mengambil metode pembayaran dari database
 $metode_query = "SELECT * FROM metode_pembayaran"; // Kuery untuk memilih semua metode pembayaran
@@ -72,6 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Memeriksa apakah metode perminta
         echo "Error: " . $sql_pembelian . "<br>" . $conn->error; // Menampilkan kesalahan jika sisip gagal
     }
 }
+
+include 'header.php'; // Menyertakan file header untuk layout halaman
 ?>
 
 
@@ -81,7 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Memeriksa apakah metode perminta
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- Menyertakan CSS Bootstrap -->
+    <!-- Bootstrap CSS dari CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
     <div class="container mt-4"> <!-- Kontainer utama untuk formulir checkout -->
@@ -112,5 +114,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Memeriksa apakah metode perminta
         </form>
     </div>
     <?php include 'footer.php'; ?> <!-- Menyertakan file footer -->
+
+<!-- JavaScript Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-QiT7gnpGVJO7zlZmThBXzBAsJtnszQfjEl4G6UrfMvhSz4rA/S98IbxJgtHlntq+" crossorigin="anonymous"></script>
 </body>
 </html>

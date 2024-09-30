@@ -1,7 +1,6 @@
 <?php
 session_start(); // Memulai sesi untuk menyimpan data pengguna
 include 'connect.php'; // Menghubungkan ke database
-include 'header.php'; // Menyertakan file header
 
 // Ambil data pengguna dari database berdasarkan username yang disimpan di sesi
 $username = $_SESSION['username'];
@@ -44,6 +43,8 @@ $sql = "SELECT p.*, s.status, m.nama_metode
         WHERE p.id_customer = '$id_customer' 
         ORDER BY p.tanggal_pembelian DESC;";
 $result = $conn->query($sql); // Jalankan query
+
+include 'header.php'; // Menyertakan file header
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +53,8 @@ $result = $conn->query($sql); // Jalankan query
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riwayat Checkout</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS dari CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
 <div class="container mt-5">
@@ -135,6 +137,7 @@ $result = $conn->query($sql); // Jalankan query
     </table>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- JavaScript Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-QiT7gnpGVJO7zlZmThBXzBAsJtnszQfjEl4G6UrfMvhSz4rA/S98IbxJgtHlntq+" crossorigin="anonymous"></script>
 </body>
 </html>

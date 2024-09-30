@@ -1,13 +1,19 @@
 <?php 
 session_start();
 include 'connect.php'; 
-include 'header.php'; 
 
-// Ambil data produk dari database dengan pencarian
+/**
+ * Mencari produk berdasarkan nama atau kategori.
+ *
+ * Jika ada parameter pencarian, mengambil produk yang sesuai dari database.
+ * Jika tidak, mengambil semua produk.
+ *
+ * @var string $search Kata kunci pencarian produk.
+ */
 $search = '';
 if (isset($_POST['search'])) {
     $search = $_POST['search'];
-    $sql = "SELECT p.id_produk, p.nama_produk, p.harga_produk, p.foto_produk 
+    $sql = "SELECT p.id_produk, p.nama_produk, p.harga_produk, p.foto_produk, k.nama_kategori
             FROM produk p 
             JOIN kategori k ON p.id_kategori = k.id_kategori 
             WHERE p.nama_produk LIKE '%" . $conn->real_escape_string($search) . "%' 
@@ -22,6 +28,8 @@ $result = $conn->query($sql);
 if (!$result) {
     die("Query failed: " . $conn->error);
 }
+
+include 'header.php'; // Menyertakan header halaman
 ?>
 
 <!DOCTYPE html>
@@ -29,8 +37,9 @@ if (!$result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produk Kami</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Produk</title>
+    <!-- Bootstrap CSS dari CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         .card-img-top {
             width: 250px;
@@ -78,7 +87,8 @@ if (!$result) {
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- JavaScript Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-QiT7gnpGVJO7zlZmThBXzBAsJtnszQfjEl4G6UrfMvhSz4rA/S98IbxJgtHlntq+" crossorigin="anonymous"></script>
 </body>
 </html>
 

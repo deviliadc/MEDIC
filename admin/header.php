@@ -8,17 +8,18 @@ if (!isset($_SESSION['admin'])) {
             window.location.href = 'login.php';
             </script>";
     exit; // Pastikan untuk keluar dari skrip setelah melakukan redirect
-} else{
-    $admin=$_SESSION['admin'];
+} else {
+    $admin = $_SESSION['admin'];
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEDIC Admin</title>
+    <!-- Bootstrap CSS dari CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -34,7 +35,7 @@ if (!isset($_SESSION['admin'])) {
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto d-flex align-items-center"> <!-- Kelas flexbox untuk menyelaraskan item vertikal -->
                         <li class="nav-item">
                             <a class="btn btn-danger" href="../admin/logout.php">Logout</a>
                         </li>
@@ -43,3 +44,8 @@ if (!isset($_SESSION['admin'])) {
             </div>
         </nav>
     </header>
+
+    <!-- JavaScript Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-QiT7gnpGVJO7zlZmThBXzBAsJtnszQfjEl4G6UrfMvhSz4rA/S98IbxJgtHlntq+" crossorigin="anonymous"></script>
+</body>
+</html>

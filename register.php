@@ -44,7 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrasi Pelanggan - MEDIC</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS dari CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         .register-container {
             max-width: 500px; /* Lebar maksimal form */
@@ -72,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form method="POST" action="">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" required>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
@@ -84,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="youremail@email.com" required>
                 </div>
                 <div class="mb-3">
                     <label for="dob" class="form-label">Tanggal Lahir</label>
@@ -113,6 +114,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JavaScript Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-QiT7gnpGVJO7zlZmThBXzBAsJtnszQfjEl4G6UrfMvhSz4rA/S98IbxJgtHlntq+" crossorigin="anonymous"></script>
 </body>
 </html>

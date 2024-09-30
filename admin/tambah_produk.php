@@ -1,10 +1,14 @@
 <?php 
 session_start(); // Memulai sesi untuk menjaga data sesi pengguna
 include '../connect.php'; // Menghubungkan ke file koneksi database
+include '../file_uploader.php'; // Menghubungkan ke kelas FileUploader
 
 // Inisialisasi variabel untuk menyimpan pesan alert jika ada kesalahan atau sukses
 $alertMessage = ''; 
 $alertType = ''; 
+
+// Inisialisasi FileUploader
+$fileUploader = new FileUploader("../assets/foto_produk/");
 
 // Mengecek apakah form dikirim melalui metode POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -16,21 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_kategori = $_POST['id_kategori'];
 
     // Mengupload foto produk
-    $nama = $_FILES['foto_produk']['name'];  // Mengambil nama file foto produk
-    $lokasi = $_FILES['foto_produk']['tmp_name'];  // Mengambil lokasi sementara file
-    $target_dir = "../assets/foto_produk/";  // Direktori tujuan untuk menyimpan file
-    $target_file = $target_dir . basename($nama);  // Menggabungkan direktori dan nama file
+    $fileUploadResult = $fileUploader->upload($_FILES['foto_produk']); // Panggil metode upload
 
-    // Cek apakah folder target ada, jika tidak buat folder tersebut
-    if (!file_exists($target_dir)) {
-        mkdir($target_dir, 0777, true);  // Buat folder dengan izin tulis
-    }
-
-    // Memindahkan file yang diupload ke folder tujuan
-    if (move_uploaded_file($lokasi, $target_file)) {
+    if ($fileUploadResult) {
         // Jika upload berhasil, masukkan data produk ke database
         $sql = "INSERT INTO produk (nama_produk, harga_produk, berat_produk, foto_produk, deskripsi_produk, id_kategori) 
-                VALUES ('$nama_produk', '$harga_produk', '$berat_produk', '$nama', '$deskripsi_produk', '$id_kategori')";
+                VALUES ('$nama_produk', '$harga_produk', '$berat_produk', '$fileUploadResult', '$deskripsi_produk', '$id_kategori')";
 
         // Jika query berhasil dijalankan
         if ($conn->query($sql) === TRUE) {
@@ -41,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $alertType = "danger";  // Tipe alert untuk error
         }
     } else {
-        // Jika gagal mengupload gambar
+        // Jika upload gagal
         $alertMessage = "Maaf, terjadi kesalahan saat mengupload gambar."; 
         $alertType = "danger";  // Tipe alert untuk error upload
     }

@@ -1,8 +1,8 @@
 <?php
 session_start();
 include 'connect.php'; 
-include 'header.php'; 
 
+// Start processing immediately
 if (!isset($_SESSION['keranjang'])) {
     $_SESSION['keranjang'] = [];
 }
@@ -53,6 +53,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'remove') {
     header("Location: keranjang.php");
     exit();
 }
+
+include 'header.php'; // Menyertakan header halaman
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +63,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'remove') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keranjang Belanja</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS dari CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
 <div class="container mt-5">
@@ -111,7 +114,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'remove') {
             <button type="submit" name="update" class="btn btn-warning">Update Keranjang</button>
         </form>
         <h4>Total Belanja: Rp <?php echo number_format($total, 0, ',', '.'); ?></h4>
-        <?php $_SESSION['total_belanja']= $total; ?>
+        <?php $_SESSION['total_belanja'] = $total; ?>
         <a href="checkout.php" class="btn btn-success">Checkout</a>
         <a href="produk.php" class="btn btn-primary">Lanjutkan Belanja</a>
     <?php endif; ?>
